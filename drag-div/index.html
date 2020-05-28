@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>媒体查询</title>
+    <style>
+        div {
+            width: 100px;
+            height: 100px;
+            background-color: #eee;
+            border: 1px solid #ccc;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <div id="btns"></div>
+    <script>
+        let dragging = false
+        let position = null
+
+        btns.addEventListener('mousedown', function (e) {
+            dragging = true
+            position = [e.clientX, e.clientY]
+        })
+
+        document.addEventListener('mousemove', function (e) {
+            if (dragging === false) { return }
+            const x = e.clientX
+            const y = e.clientY
+            const deltaX = x - position[0]
+            const deltaY = y - position[1]
+            const left = parseInt(btns.style.left || 0)
+            const top = parseInt(btns.style.top || 0)
+            // console.log(btns.style.left, left, top)
+            btns.style.left = left + deltaX + 'px'
+            btns.style.top = top + deltaY + 'px'
+            position = [x, y]
+        })
+
+        document.addEventListener('mouseup', function () {
+            dragging = false
+        })
+    </script>
+</body>
+</html>
