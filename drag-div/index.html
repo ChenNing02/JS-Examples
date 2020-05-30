@@ -15,12 +15,12 @@
     </style>
 </head>
 <body>
-    <div id="btns"></div>
+    <div id="drag"></div>
     <script>
         let dragging = false
         let position = null
 
-        btns.addEventListener('mousedown', function (e) {
+        drag.addEventListener('mousedown', function (e) {
             dragging = true
             position = [e.clientX, e.clientY]
         })
@@ -31,11 +31,11 @@
             const y = e.clientY
             const deltaX = x - position[0]
             const deltaY = y - position[1]
-            const left = parseInt(btns.style.left || 0)
-            const top = parseInt(btns.style.top || 0)
-            // console.log(btns.style.left, left, top)
-            btns.style.left = left + deltaX + 'px'
-            btns.style.top = top + deltaY + 'px'
+            const left = parseInt(drag.style.left || 0)
+            const top = parseInt(drag.style.top || 0)
+            // console.log(drag.style.left, left, top)
+            drag.style.left = left + deltaX + 'px'
+            drag.style.top = top + deltaY + 'px'
             position = [x, y]
         })
 
