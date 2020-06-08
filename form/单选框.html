@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>单选框案例</title>
+    <style>
+        .it-label {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 1px solid #2eb5f0;
+            position: relative;
+            cursor: pointer;
+        }
+        .it-label::before {
+            content: " ";
+            display: inline-block;
+            width: 7px;
+            height: 7px;
+            background-color: #fff;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        input[type=radio] {
+            display: none;
+        }
+
+        input[type=radio]:checked+label {
+            background-color: #2eb5f0;
+        }
+        label {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <label>
+        <input name="problem" type="radio" id="radioId">
+        <label class="it-label" for="radioId"></label>
+        <span>选我</span>
+    </label>
+    <label>
+        <input name="problem" type="radio" id="radioId">
+        <label class="it-label" for="radioId"></label>
+        <span>选我</span>
+    </label>
+    <label>
+        <input name="problem" type="radio" id="radioId">
+        <label class="it-label" for="radioId"></label>
+        <span>选我</span>
+    </label>
+</body>
+</html>

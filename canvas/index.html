@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>简单的画板</title>
+    <style>
+        body { margin: 0; padding: 30px; 
+            display: flex; justify-content: center; }
+        #draw{ background-color: #fff; 
+            box-shadow: 0px 0px 15px 2px rgba(0,0,0,0.45);}
+    </style>
+</head>
+<body>
+    <canvas id="draw" width="800" height="600"></canvas>
+    <script>
+        let canvas = document.getElementById('draw')
+        let context = canvas.getContext('2d')
+        let painting = false
+        let lastPoint = {x:undefined, y:undefined}
+        
+        canvas.onmousedown = function (a) {
+            let top = a.target.offsetTop
+            let left = a.target.offsetLeft
+            painting = true
+            let x = a.clientX - left
+            let y = a.clientY - top
+            lastPoint = {'x':x, 'y':y}
+            drawCircle(x, y, 1)
+        }
+        canvas.onmousemove = function(a){
+            if(painting){
+                let top = a.target.offsetTop
+                let left = a.target.offsetLeft
+                let x = a.clientX - left
+                let y = a.clientY - top
+                let newPoint = {'x':x, 'y':y}
+                drawCircle(x, y, 1)
+                drawLine(lastPoint.x, lastPoint.y, newPoint.x, newPoint.y)
+                lastPoint = newPoint
+            }
+        }
+        canvas.onmouseup = function(){ painting = false }
+
+        function drawCircle(x,y,radius){
+            context.beginPath()
+            context.fillStyle = 'black'
+            context.arc(x, y, radius, 0, Math.PI*2)
+            context.fill()
+        }
+        function drawLine(x1,y1,x2,y2){
+            context.beginPath();
+            context.strokeStyle = 'black'
+            context.moveTo(x1, y1);
+            context.lineWidth = 2
+            context.lineTo(x2, y2);
+            context.stroke();
+        }
+    </script>
+</body>
+</html>
